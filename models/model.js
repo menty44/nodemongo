@@ -8,7 +8,25 @@ const dataSchema = new mongoose.Schema({
     age: {
         required: true,
         type: Number
-    }
+    },
+    sacks: {
+        required: true,
+        type: Number
+    },
+    goals: {
+        required: true,
+        type: Number
+    },
+    touchdown: {
+        required: true,
+        type: Number
+    },
+    rushing_yards: {
+        required: true,
+        type: Number
+    },
+
+
 })
 
-module.exports = mongoose.model('Data', dataSchema)
+module.exports = mongoose.model('Team_player', dataSchema)

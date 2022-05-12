@@ -6,7 +6,11 @@ const router = express.Router();
 router.post('/post', async (req, res) => {
     const data = new Model({
         name: req.body.name,
-        age: req.body.age
+        age: req.body.age,
+        sacks: req.body.sacks,
+        goals: req.body.goals,
+        touchdown: req.body.touchdown,
+        rushing_yards: req.body.rushing_yards
     })
 
     try {
@@ -67,6 +71,50 @@ router.delete('/delete/:id', async (req, res) => {
     }
     catch (error) {
         res.status(400).json({ message: error.message })
+    }
+})
+
+//Get highest Touchdowns
+router.get('/touchdowns', async (req, res) => {
+    try {
+        const data = await Model.find().sort({"touchdown": -1}).limit(1);
+        res.json(data)
+    }
+    catch (error) {
+        res.status(500).json({ message: error.message })
+    }
+})
+
+//Get highest Rushing Yards
+router.get('/rushingyards', async (req, res) => {
+    try {
+        const data = await Model.find().sort({"rushing_yards": -1}).limit(1);
+        res.json(data)
+    }
+    catch (error) {
+        res.status(500).json({ message: error.message })
+    }
+})
+
+//Get highest Sacks
+router.get('/sacks', async (req, res) => {
+    try {
+        const data = await Model.find().sort({"sacks": -1}).limit(1);
+        res.json(data)
+    }
+    catch (error) {
+        res.status(500).json({ message: error.message })
+    }
+})
+
+//Get highest Sacks
+router.get('/rushingyards/least', async (req, res) => {
+    try {
+        const data = await Model.find().sort({"rushing_yards": 1}).limit(1);
+        res.json(data)
+    }
+    catch (error) {
+        res.status(500).json({ message: error.message })
     }
 })
 
