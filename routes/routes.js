@@ -33,6 +33,17 @@ router.get('/getAll', async (req, res) => {
     }
 })
 
+//Get all Method
+router.get('/getAll/goals/desc', async (req, res) => {
+    try {
+        const data = await Model.find().sort({"goals": 1});
+        res.json(data)
+    }
+    catch (error) {
+        res.status(500).json({ message: error.message })
+    }
+})
+
 //Get by ID Method
 router.get('/getOne/:id', async (req, res) => {
     try {
